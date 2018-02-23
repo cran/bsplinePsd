@@ -1,6 +1,6 @@
 #' @title Metropolis-within-Gibbs sampler for spectral inference of a stationary time series using a B-spline prior
 #' @description This function updates the (cubic) B-spline prior using the Whittle likelihood and obtains samples from the pseudo-posterior to infer the spectral density of a stationary time series.
-#' @details The function \code{gibbs_bspline} is an implementation of the (serial version of the) MCMC algorithm presented in Edwards et al. (2017).  This algorithm uses a nonparametric B-spline prior to estimate the spectral density of a stationary time series and can be considered a generalisation of the algorithm of Choudhuri et al. (2004), which used the Bernstein polynomial prior.  A Dirichlet process prior is used to find the weights for the B-spline densities used in the finite mixture and a seperate and independent Dirichlet process prior used to place knots.  The algorithm therefore allows for a data-driven choice of the number of knots/mixtures and their locations.
+#' @details The function \code{gibbs_bspline} is an implementation of the (serial version of the) MCMC algorithm presented in Edwards et al. (2018).  This algorithm uses a nonparametric B-spline prior to estimate the spectral density of a stationary time series and can be considered a generalisation of the algorithm of Choudhuri et al. (2004), which used the Bernstein polynomial prior.  A Dirichlet process prior is used to find the weights for the B-spline densities used in the finite mixture and a seperate and independent Dirichlet process prior used to place knots.  The algorithm therefore allows for a data-driven choice of the number of knots/mixtures and their locations.
 #' @param data numeric vector
 #' @param Ntotal total number of iterations to run the Markov chain
 #' @param burnin number of initial iterations to be discarded
@@ -14,6 +14,7 @@
 #' @param LH truncation parameter of Dirichlet process in stick breaking representation for knot placements of B-spline densities
 #' @param tau.alpha,tau.beta prior parameters for tau (Inverse Gamma)
 #' @param kmax upper bound for number of B-spline densities in mixture
+#' @param k1 starting value for k.  If k1 = NA then a random starting value between 5 and kmax is selected.
 #' @return A list containing the following components:
 #'    \item{psd.median,psd.mean}{psd estimates: (pointwise) posterior median and mean}
 #'    \item{psd.p05,psd.p95}{pointwise credibility interval}
@@ -21,7 +22,7 @@
 #'    \item{k,tau,V,Z,U,X}{posterior traces of model parameters}
 #'    \item{knots.trace}{trace of knot placements}
 #'    \item{ll.trace}{trace of log likelihood}
-#' @references Edwards, M. C., Meyer, R., and Christensen, N. (2017), Bayesian nonparametric spectral density estimation using B-spline priors, <arXiv:1707.04878>.
+#' @references Edwards, M. C., Meyer, R., and Christensen, N. (2018), Bayesian nonparametric spectral density estimation using B-spline priors, \emph{Statistics and Computing}, https://doi.org/10.1007/s11222-017-9796-9.
 #' 
 #' Choudhuri, N., Ghosal, S., and Roy, A. (2004), Bayesian estimation of the spectral density of a time series, \emph{Journal of the American Statistical Association}, 99(468):1050--1059.
 #' 
@@ -40,7 +41,7 @@
 #' require(beyondWhittle)  # For psd_arma() function
 #' freq = 2 * pi / n * (1:(n / 2 + 1) - 1)[-c(1, n / 2 + 1)]
 #' psd.true <- psd_arma(freq, ar = 0.9, ma = numeric(0), sigma2 = 1)
-#' plot(x = freq, y = psd.true, col = 2, type = "l")
+#' plot(x = freq, y = psd.true, col = 2, type = "l", xlab = "Frequency", ylab = "PSD")
 #' lines(x = freq, y = mcmc$psd.median, type = "l")
 #' lines(x = freq, y = mcmc$psd.p05, type = "l", lty = 2)
 #' lines(x = freq, y = mcmc$psd.p95, type = "l", lty = 2)
@@ -65,7 +66,8 @@ gibbs_bspline <- function(data,
                           LH = 20,
                           tau.alpha = 0.001,
                           tau.beta = 0.001,
-                          kmax = 100) {
+                          kmax = 100,
+                          k1 = 20) {
   
   n <- length(data)
   
@@ -85,7 +87,7 @@ gibbs_bspline <- function(data,
   if (any(c(MG, MH, G0.alpha, G0.beta, H0.alpha, H0.beta, tau.alpha, tau.beta, k.theta) <= 0)) stop("MG, MH, G0.alpha, G0.beta, H0.alpha, H0.beta, tau.alpha, tau.beta, and k.theta must be strictly positive")
   if (any(c(Ntotal, thin, kmax, LG, LH) %% 1 != 0) || any(c(Ntotal, thin, kmax, LG, LH) <= 0)) stop("Ntotal, kmax, LG, and LH must be strictly positive integers")
   if ((burnin %% 1 != 0) || (burnin < 0)) stop("burnin must be a non-negative integer")
-  
+
   FZ <- fast_ft(data)  # FFT data to frequency domain.  NOTE: Must be mean-centred.
   
   pdgrm <- abs(FZ) ^ 2   # Periodogram: NOTE: the length is n here.
@@ -107,8 +109,15 @@ gibbs_bspline <- function(data,
   U[, 1] <- stats::rbeta(LH, 1, MH)
   W[, 1] <- stats::rbeta(LG + 1, G0.alpha, G0.beta)  # G0.alpha = G0.beta = 1 gives U[0,1]
   Z[, 1] <- stats::rbeta(LH + 1, H0.alpha, H0.beta)  # G0.alpha = G0.beta = 1 gives U[0,1]
-  k[1] <- sample(5:kmax, 1)  # Need at least k = 5 for cubic B-splines
   
+  if (is.na(k1)) {  # If k1 is NA, user does not specify starting value for k
+    k[1] = sample(5:kmax, 1)  # Need at least k = 5 for cubic B-splines
+  }
+  else {  # User specified starting value for k
+    if ((k1 < 5) || (k1 > kmax)) stop("k must be at least 5 and no more than kmax")  
+    k[1] <- k1
+  }
+
   # Store log likelihood
   ll.trace <- rep(NA, Ntotal)
   ll.trace[1] <- llike(omega, FZ, k[1], V[, 1], W[, 1], U[, 1], Z[, 1], tau[1], pdgrm, recompute = TRUE)$llike

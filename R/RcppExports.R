@@ -3,59 +3,59 @@
 
 #' @keywords internal
 AnIn1 <- function(knot) {
-    .Call('bsplinePsd_AnIn1', PACKAGE = 'bsplinePsd', knot)
+    .Call(`_bsplinePsd_AnIn1`, knot)
 }
 
 #' @keywords internal
 AnIn2 <- function(knot) {
-    .Call('bsplinePsd_AnIn2', PACKAGE = 'bsplinePsd', knot)
+    .Call(`_bsplinePsd_AnIn2`, knot)
 }
 
 #' @keywords internal
 AnIn3 <- function(knot) {
-    .Call('bsplinePsd_AnIn3', PACKAGE = 'bsplinePsd', knot)
+    .Call(`_bsplinePsd_AnIn3`, knot)
 }
 
 #' @keywords internal
 AnIn4 <- function(knot) {
-    .Call('bsplinePsd_AnIn4', PACKAGE = 'bsplinePsd', knot)
+    .Call(`_bsplinePsd_AnIn4`, knot)
 }
 
 #' @keywords internal
 AnIn5 <- function(knot) {
-    .Call('bsplinePsd_AnIn5', PACKAGE = 'bsplinePsd', knot)
+    .Call(`_bsplinePsd_AnIn5`, knot)
 }
 
 #' @keywords internal
 AnIn6 <- function(knot) {
-    .Call('bsplinePsd_AnIn6', PACKAGE = 'bsplinePsd', knot)
+    .Call(`_bsplinePsd_AnIn6`, knot)
 }
 
 #' @keywords internal
 AnIn7 <- function(knot) {
-    .Call('bsplinePsd_AnIn7', PACKAGE = 'bsplinePsd', knot)
+    .Call(`_bsplinePsd_AnIn7`, knot)
 }
 
 #' @keywords internal
 AnIn8 <- function(knot) {
-    .Call('bsplinePsd_AnIn8', PACKAGE = 'bsplinePsd', knot)
+    .Call(`_bsplinePsd_AnIn8`, knot)
 }
 
 #' C++ function for generating  p from v in Stick Breaking DP representation
 #' @keywords internal
 pFromV <- function(v) {
-    .Call('bsplinePsd_pFromV', PACKAGE = 'bsplinePsd', v)
+    .Call(`_bsplinePsd_pFromV`, v)
 }
 
 #' C++ function for computing mixture weights of Bernstein-Mixtures given the probabilities p, values w, and degree k.
 #' @keywords internal
 mixtureWeight <- function(p, w, k) {
-    .Call('bsplinePsd_mixtureWeight', PACKAGE = 'bsplinePsd', p, w, k)
+    .Call(`_bsplinePsd_mixtureWeight`, p, w, k)
 }
 
 #' C++ function for building a density mixture, given mixture weights and functions.
 #' @keywords internal
 densityMixture <- function(weights, densities) {
-    .Call('bsplinePsd_densityMixture', PACKAGE = 'bsplinePsd', weights, densities)
+    .Call(`_bsplinePsd_densityMixture`, weights, densities)
 }
 

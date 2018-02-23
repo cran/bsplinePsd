@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // AnIn1
 double AnIn1(NumericVector knot);
-RcppExport SEXP bsplinePsd_AnIn1(SEXP knotSEXP) {
+RcppExport SEXP _bsplinePsd_AnIn1(SEXP knotSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -18,7 +18,7 @@ END_RCPP
 }
 // AnIn2
 double AnIn2(NumericVector knot);
-RcppExport SEXP bsplinePsd_AnIn2(SEXP knotSEXP) {
+RcppExport SEXP _bsplinePsd_AnIn2(SEXP knotSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -29,7 +29,7 @@ END_RCPP
 }
 // AnIn3
 double AnIn3(NumericVector knot);
-RcppExport SEXP bsplinePsd_AnIn3(SEXP knotSEXP) {
+RcppExport SEXP _bsplinePsd_AnIn3(SEXP knotSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -40,7 +40,7 @@ END_RCPP
 }
 // AnIn4
 double AnIn4(NumericVector knot);
-RcppExport SEXP bsplinePsd_AnIn4(SEXP knotSEXP) {
+RcppExport SEXP _bsplinePsd_AnIn4(SEXP knotSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -51,7 +51,7 @@ END_RCPP
 }
 // AnIn5
 double AnIn5(NumericVector knot);
-RcppExport SEXP bsplinePsd_AnIn5(SEXP knotSEXP) {
+RcppExport SEXP _bsplinePsd_AnIn5(SEXP knotSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -62,7 +62,7 @@ END_RCPP
 }
 // AnIn6
 double AnIn6(NumericVector knot);
-RcppExport SEXP bsplinePsd_AnIn6(SEXP knotSEXP) {
+RcppExport SEXP _bsplinePsd_AnIn6(SEXP knotSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -73,7 +73,7 @@ END_RCPP
 }
 // AnIn7
 double AnIn7(NumericVector knot);
-RcppExport SEXP bsplinePsd_AnIn7(SEXP knotSEXP) {
+RcppExport SEXP _bsplinePsd_AnIn7(SEXP knotSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -84,7 +84,7 @@ END_RCPP
 }
 // AnIn8
 double AnIn8(NumericVector knot);
-RcppExport SEXP bsplinePsd_AnIn8(SEXP knotSEXP) {
+RcppExport SEXP _bsplinePsd_AnIn8(SEXP knotSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -95,7 +95,7 @@ END_RCPP
 }
 // pFromV
 NumericVector pFromV(NumericVector v);
-RcppExport SEXP bsplinePsd_pFromV(SEXP vSEXP) {
+RcppExport SEXP _bsplinePsd_pFromV(SEXP vSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -106,7 +106,7 @@ END_RCPP
 }
 // mixtureWeight
 NumericVector mixtureWeight(NumericVector p, NumericVector w, unsigned k);
-RcppExport SEXP bsplinePsd_mixtureWeight(SEXP pSEXP, SEXP wSEXP, SEXP kSEXP) {
+RcppExport SEXP _bsplinePsd_mixtureWeight(SEXP pSEXP, SEXP wSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -119,7 +119,7 @@ END_RCPP
 }
 // densityMixture
 NumericVector densityMixture(NumericVector weights, NumericMatrix densities);
-RcppExport SEXP bsplinePsd_densityMixture(SEXP weightsSEXP, SEXP densitiesSEXP) {
+RcppExport SEXP _bsplinePsd_densityMixture(SEXP weightsSEXP, SEXP densitiesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -128,4 +128,24 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(densityMixture(weights, densities));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_bsplinePsd_AnIn1", (DL_FUNC) &_bsplinePsd_AnIn1, 1},
+    {"_bsplinePsd_AnIn2", (DL_FUNC) &_bsplinePsd_AnIn2, 1},
+    {"_bsplinePsd_AnIn3", (DL_FUNC) &_bsplinePsd_AnIn3, 1},
+    {"_bsplinePsd_AnIn4", (DL_FUNC) &_bsplinePsd_AnIn4, 1},
+    {"_bsplinePsd_AnIn5", (DL_FUNC) &_bsplinePsd_AnIn5, 1},
+    {"_bsplinePsd_AnIn6", (DL_FUNC) &_bsplinePsd_AnIn6, 1},
+    {"_bsplinePsd_AnIn7", (DL_FUNC) &_bsplinePsd_AnIn7, 1},
+    {"_bsplinePsd_AnIn8", (DL_FUNC) &_bsplinePsd_AnIn8, 1},
+    {"_bsplinePsd_pFromV", (DL_FUNC) &_bsplinePsd_pFromV, 1},
+    {"_bsplinePsd_mixtureWeight", (DL_FUNC) &_bsplinePsd_mixtureWeight, 3},
+    {"_bsplinePsd_densityMixture", (DL_FUNC) &_bsplinePsd_densityMixture, 2},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_bsplinePsd(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }
