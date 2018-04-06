@@ -41,6 +41,26 @@ AnIn8 <- function(knot) {
     .Call(`_bsplinePsd_AnIn8`, knot)
 }
 
+#' @keywords internal
+AnInQ1 <- function(knot) {
+    .Call(`_bsplinePsd_AnInQ1`, knot)
+}
+
+#' @keywords internal
+AnInQ2 <- function(knot) {
+    .Call(`_bsplinePsd_AnInQ2`, knot)
+}
+
+#' @keywords internal
+AnInQ3 <- function(knot) {
+    .Call(`_bsplinePsd_AnInQ3`, knot)
+}
+
+#' @keywords internal
+AnInQ4 <- function(knot) {
+    .Call(`_bsplinePsd_AnInQ4`, knot)
+}
+
 #' C++ function for generating  p from v in Stick Breaking DP representation
 #' @keywords internal
 pFromV <- function(v) {
@@ -57,5 +77,11 @@ mixtureWeight <- function(p, w, k) {
 #' @keywords internal
 densityMixture <- function(weights, densities) {
     .Call(`_bsplinePsd_densityMixture`, weights, densities)
+}
+
+#' C++ help function to redundantly roll out a PSD to length n
+#' @keywords internal
+unrollPsd <- function(qPsd, n) {
+    .Call(`_bsplinePsd_unrollPsd`, qPsd, n)
 }
 

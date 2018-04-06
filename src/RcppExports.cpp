@@ -93,6 +93,50 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// AnInQ1
+double AnInQ1(NumericVector knot);
+RcppExport SEXP _bsplinePsd_AnInQ1(SEXP knotSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type knot(knotSEXP);
+    rcpp_result_gen = Rcpp::wrap(AnInQ1(knot));
+    return rcpp_result_gen;
+END_RCPP
+}
+// AnInQ2
+double AnInQ2(NumericVector knot);
+RcppExport SEXP _bsplinePsd_AnInQ2(SEXP knotSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type knot(knotSEXP);
+    rcpp_result_gen = Rcpp::wrap(AnInQ2(knot));
+    return rcpp_result_gen;
+END_RCPP
+}
+// AnInQ3
+double AnInQ3(NumericVector knot);
+RcppExport SEXP _bsplinePsd_AnInQ3(SEXP knotSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type knot(knotSEXP);
+    rcpp_result_gen = Rcpp::wrap(AnInQ3(knot));
+    return rcpp_result_gen;
+END_RCPP
+}
+// AnInQ4
+double AnInQ4(NumericVector knot);
+RcppExport SEXP _bsplinePsd_AnInQ4(SEXP knotSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type knot(knotSEXP);
+    rcpp_result_gen = Rcpp::wrap(AnInQ4(knot));
+    return rcpp_result_gen;
+END_RCPP
+}
 // pFromV
 NumericVector pFromV(NumericVector v);
 RcppExport SEXP _bsplinePsd_pFromV(SEXP vSEXP) {
@@ -129,6 +173,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// unrollPsd
+NumericVector unrollPsd(NumericVector qPsd, unsigned n);
+RcppExport SEXP _bsplinePsd_unrollPsd(SEXP qPsdSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type qPsd(qPsdSEXP);
+    Rcpp::traits::input_parameter< unsigned >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(unrollPsd(qPsd, n));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_bsplinePsd_AnIn1", (DL_FUNC) &_bsplinePsd_AnIn1, 1},
@@ -139,9 +195,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"_bsplinePsd_AnIn6", (DL_FUNC) &_bsplinePsd_AnIn6, 1},
     {"_bsplinePsd_AnIn7", (DL_FUNC) &_bsplinePsd_AnIn7, 1},
     {"_bsplinePsd_AnIn8", (DL_FUNC) &_bsplinePsd_AnIn8, 1},
+    {"_bsplinePsd_AnInQ1", (DL_FUNC) &_bsplinePsd_AnInQ1, 1},
+    {"_bsplinePsd_AnInQ2", (DL_FUNC) &_bsplinePsd_AnInQ2, 1},
+    {"_bsplinePsd_AnInQ3", (DL_FUNC) &_bsplinePsd_AnInQ3, 1},
+    {"_bsplinePsd_AnInQ4", (DL_FUNC) &_bsplinePsd_AnInQ4, 1},
     {"_bsplinePsd_pFromV", (DL_FUNC) &_bsplinePsd_pFromV, 1},
     {"_bsplinePsd_mixtureWeight", (DL_FUNC) &_bsplinePsd_mixtureWeight, 3},
     {"_bsplinePsd_densityMixture", (DL_FUNC) &_bsplinePsd_densityMixture, 2},
+    {"_bsplinePsd_unrollPsd", (DL_FUNC) &_bsplinePsd_unrollPsd, 2},
     {NULL, NULL, 0}
 };
 

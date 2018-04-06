@@ -4,7 +4,7 @@
 \alias{llike}
 \title{log Whittle likelihood}
 \usage{
-llike(omega, FZ, k, v, w, u, z, tau, pdgrm, recompute, db.list)
+llike(omega, FZ, k, v, w, u, z, tau, pdgrm, degree, recompute, db.list)
 }
 \description{
 log Whittle likelihood
