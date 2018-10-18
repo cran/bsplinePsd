@@ -1,8 +1,8 @@
-b6109bf7a8bbb34723ac8229631bcfd4 *DESCRIPTION
+ffda47a250452a0b47c33bc74a73b55c *DESCRIPTION
 8072f778deb16936f547361ffb7a3db3 *NAMESPACE
-d5d0a0dc9569bc0f699a66aff71560b5 *NEWS.md
-0c184e2922cadaac95ccec7144329eb7 *R/RcppExports.R
-f61c1196e3faa0e0ae3184fb9ae342a2 *R/gibbs_bspline.R
+85d7d42f1aeb584326fd8209d09d7647 *NEWS.md
+02add7995ebca243999b298938b05a0b *R/RcppExports.R
+4b308d35649d200fd111033018eb1fa2 *R/gibbs_bspline.R
 bc20831772d5868969cffaf64cb3460d *R/internal_gibbs_core.R
 e4f6fadc4dda25930ceca78bfd51b7ff *R/internal_gibbs_s3.R
 22fc5c7c529181bda8eaaf368ed83daf *R/internal_gibbs_util.R
@@ -23,8 +23,8 @@ cefe4cf43676fa01e1deadad2807d89e *man/plot.psd.Rd
 c18ecd2eee5ca31f9f31d467787f3b94 *man/qpsd.Rd
 c7fa831ffd2ba70bbc70050fe4c70fa4 *man/uniformmax.Rd
 da4fe5fc3e98576749d9dcc9eb476637 *man/unrollPsd.Rd
-c555675634752fc1d108c61bcde16436 *src/RcppExports.cpp
+70a6b349734a3c61e8441a85fd6e2b5d *src/RcppExports.cpp
 8772f35adac41b552110e42d38277f71 *src/internal_anint.cpp
 5e76ab776e124b299af1cf566c52f805 *src/internal_anint_quadratic.cpp
-9eb1826b3f7b8b5ed12b5ad5f0d20d9a *src/internal_beyondWhittle.cpp
+2f19a702b8d85afb88b4c4d5e5e116b0 *src/internal_beyondWhittle.cpp
 7c22b1b500cab25872924e218f1645f5 *src/registerDynamicSymbol.c
